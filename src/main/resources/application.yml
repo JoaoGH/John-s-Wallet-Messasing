@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: John's Wallet Messaging
