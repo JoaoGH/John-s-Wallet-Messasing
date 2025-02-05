@@ -1,11 +1,16 @@
 package br.com.johnswallet.messaging.rocketmq;
 
 import br.com.johnswallet.messaging.dto.MensagemDTO;
+import br.com.johnswallet.messaging.sender.JohnsWalletMailSender;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MessageConsumer {
+
+    @Autowired
+    private JohnsWalletMailSender mailSender;
 
     private static final String TOPIC = "johns-wallet";
 
@@ -13,7 +18,7 @@ public class MessageConsumer {
     public void onMessage(MensagemDTO message) {
 
         if (message.metodoEnvio().contains("EMAIL")) {
-            System.out.println("enviar EMAIL");
+            mailSender.sendEmail(message);
         }
 
         if (message.metodoEnvio().contains("WHATSAPP")) {
