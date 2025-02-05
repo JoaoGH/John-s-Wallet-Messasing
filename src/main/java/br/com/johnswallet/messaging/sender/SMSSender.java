@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SMSSender {
+public class SMSSender extends DefaultSender {
 
     @Value("${twilio.account-sid}")
     private String ACCOUNT_SID;
@@ -19,7 +19,12 @@ public class SMSSender {
     @Value("${twilio.number}")
     private String NUMBER;
 
-    public void sendSms(MensagemDTO dto) {
+    @Override
+    public void send(MensagemDTO dto) {
+        if (!isEnabled()) {
+            throw new RuntimeException("Nao habilidato");
+        }
+
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
                         new PhoneNumber(dto.destinatario().telefone()),
@@ -28,5 +33,10 @@ public class SMSSender {
                 .create();
 
         message.getSid();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return Boolean.parseBoolean(environment.getProperty("wallet.tipos-cobranca.sms"));
     }
 }

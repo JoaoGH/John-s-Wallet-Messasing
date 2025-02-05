@@ -47,3 +47,12 @@ twilio:
   account-sid: ${TWILIO_ACCOUNT_SID}
   auth-token: ${TWILIO_AUTH_TOKEN}
   number: ${TWILIO_NUMBER}
+
+
+---
+
+wallet:
+  tipos-cobranca:
+    email: ${EMAIL_ENABLED:false}
+    sms: ${SMS_ENALBED:false}
+    whatsapp: ${WHATSAPP_ENABLED:false}
