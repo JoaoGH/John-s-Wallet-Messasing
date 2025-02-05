@@ -2,6 +2,7 @@ package br.com.johnswallet.messaging.rocketmq;
 
 import br.com.johnswallet.messaging.dto.MensagemDTO;
 import br.com.johnswallet.messaging.sender.JohnsWalletMailSender;
+import br.com.johnswallet.messaging.sender.SMSSender;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,8 @@ public class MessageConsumer {
 
     @Autowired
     private JohnsWalletMailSender mailSender;
+    @Autowired
+    private SMSSender smsSender;
 
     private static final String TOPIC = "johns-wallet";
 
@@ -26,7 +29,7 @@ public class MessageConsumer {
         }
 
         if (message.metodoEnvio().contains("SMS")) {
-            System.out.println("enviar SMS");
+            smsSender.sendSms(message);
         }
 
     }

@@ -29,6 +29,7 @@ dependencies {
 
 	runtimeOnly 'org.postgresql:postgresql'
 
+	implementation "com.twilio.sdk:twilio:10.6.8"
 
 }
 
