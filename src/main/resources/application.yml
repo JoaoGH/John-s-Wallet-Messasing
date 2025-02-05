@@ -25,3 +25,18 @@ spring:
     port: ${RABBIT_PORT:5672}
     username: ${RABBIT_USER:rabbit}
     password: ${RABBIT_PASS:rabbit}
+
+---
+
+spring:
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USER}
+    password: ${MAIL_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enabled: true
