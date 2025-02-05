@@ -1,3 +1,15 @@
 spring:
   application:
     name: John's Wallet Messaging
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/john_wallet}
+    username: ${DATASOURCE_USER:postgres}
+    password: ${DATASOURCE_PASS:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
