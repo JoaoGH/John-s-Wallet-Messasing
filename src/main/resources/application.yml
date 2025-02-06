@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: John's Wallet Messaging
@@ -13,3 +16,43 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+---
+
+spring:
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USER:rabbit}
+    password: ${RABBIT_PASS:rabbit}
+
+---
+
+spring:
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USER}
+    password: ${MAIL_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enabled: true
+
+---
+
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID}
+  auth-token: ${TWILIO_AUTH_TOKEN}
+  number: ${TWILIO_NUMBER}
+
+
+---
+
+wallet:
+  tipos-cobranca:
+    email: ${EMAIL_ENABLED:false}
+    sms: ${SMS_ENALBED:false}
+    whatsapp: ${WHATSAPP_ENABLED:false}
