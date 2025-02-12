@@ -1,4 +1,4 @@
-package br.com.johnswallet.messaging.rocketmq;
+package br.com.johnswallet.messaging.queue;
 
 import br.com.johnswallet.messaging.dto.MensagemDTO;
 import br.com.johnswallet.messaging.sender.JohnsWalletMailSender;
